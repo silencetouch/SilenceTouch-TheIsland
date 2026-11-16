@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="30.48mm" height="128.5mm" viewBox="0 0 90 380">
+  <rect x="0" y="0" width="90" height="380" fill="#e8dcc6"/>
+  <rect x="2" y="2" width="86" height="372" fill="#e8dcc6" stroke="#161616" stroke-width="1.5"/>
+  <!-- 品牌綠色帶 -->
+  <rect x="2.75" y="19" width="84.5" height="14" fill="#008888"/>
+  <!-- 分隔線：預覽 | 尺寸旋鈕 | 比例與繞場 -->
+  <line x1="9" y1="287" x2="81" y2="287" stroke="#c4b496" stroke-width="0.8"/>
+  <!-- 底部色條：和標題色帶同色（淺色主題是品牌綠，Dark 是米白） -->
+  <rect x="0" y="376" width="90" height="4" fill="#008888"/>
+</svg>
