@@ -5,11 +5,12 @@
 ## 一、上架前要先決定的事
 
 1. **代號（已決定）**
-   - 外掛代號：`SilenceTouch-TheIsland`；模組代號：`TheIsland`、`TheIslandRoom`。
+   - 外掛名稱：`Silence Touch`；外掛代號：`SilenceTouch`；模組代號：`TheIsland`、`TheIslandRoom`。
+   - VCV 規定外掛名稱與代號要代表品牌、不能跟單一模組同名，因為之後的新模組（例如 Key Recorder）也要放進同一個外掛。
    - 代號一旦上架就**永遠不能改**，改了會讓所有人的舊 patch 找不到模組。
    - 舊版代號（`SilenceTouchSpatial` / `Atmos714`）只在你自己的電腦上用過，舊 patch 用 `tools/convert_patches.py` 轉換。
 2. **名稱與說明**
-   - 外掛與主模組名稱都是 **The Island**，說明是「a spatial panner for multi-channel mixing」，不提及任何商標。
+   - 外掛名稱 **Silence Touch**，主模組名稱 **The Island**，說明是「a spatial panner for multi-channel mixing」，不提及任何商標。
 3. **授權**
    - 目前是 `GPL-3.0-or-later`（已附 `LICENSE-GPLv3.txt`）。代表任何人都可以取得、修改、再散布原始碼，但衍生作品也必須開源。
    - 深觸的 LOGO 與品牌名稱建議另外聲明保留權利（不隨 GPL 授權），可以在 README 加一段說明。
@@ -26,7 +27,7 @@
 
 ## 三、送件
 
-1. 到 https://github.com/VCVRack/library 的 Issues 開**一個**新的討論串，標題就是外掛代號：`SilenceTouch-TheIsland`。
+1. 到 https://github.com/VCVRack/library 的 Issues 開**一個**新的討論串，標題就是外掛代號：`SilenceTouch`。
 2. 在討論串裡留言：外掛名稱、授權、原始碼網址，以及要上架的版本號和對應的 **commit 編號**（用 `git rev-parse HEAD` 取得，不能只寫 master）。
 3. 等 VCV 團隊編譯與審核。如果某個平台編譯失敗，他們會在討論串回覆，修正後再留言新的 commit 編號。
 

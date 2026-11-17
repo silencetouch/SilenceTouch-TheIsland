@@ -5,7 +5,7 @@
 這個工具只把 patch 裡的代號換掉，旋鈕、接線、設定全部保留。原始檔案不會被修改，
 轉好的檔案會另存成「原檔名 (The Island).vcv」放在同一個資料夾。
 
-    外掛代號   SilenceTouchSpatial  →  SilenceTouch-TheIsland
+    外掛代號   SilenceTouchSpatial、SilenceTouch-TheIsland  →  SilenceTouch
     模組代號   Atmos714             →  TheIsland
                IslandRoom           →  TheIslandRoom
 
@@ -18,7 +18,7 @@
 """
 import io, json, os, sys, tarfile
 
-PLUGIN_MAP = {"SilenceTouchSpatial": "SilenceTouch-TheIsland"}
+PLUGIN_MAP = {"SilenceTouchSpatial": "SilenceTouch", "SilenceTouch-TheIsland": "SilenceTouch"}
 MODEL_MAP = {"Atmos714": "TheIsland", "IslandRoom": "TheIslandRoom"}
 ZSTD_MAGIC = b"\x28\xb5\x2f\xfd"
 

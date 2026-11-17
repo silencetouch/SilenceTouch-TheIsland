@@ -9,7 +9,8 @@ English: [README.md](README.md)
 - **The Island**（模組代號 `TheIsland`）：12 軌空間聲像主模組。
 - **The Island Room**（模組代號 `TheIslandRoom`）：房間比例擴充模組，緊貼在主模組旁邊使用。
 
-外掛代號是 `SilenceTouch-TheIsland`。舊版（外掛代號 `SilenceTouchSpatial`、模組代號 `Atmos714`）的 patch 請用
+外掛名稱是 **Silence Touch**、外掛代號是 `SilenceTouch`（代表深觸品牌，之後的新模組也會放在同一個外掛裡）。
+舊版（外掛代號 `SilenceTouchSpatial` 或 `SilenceTouch-TheIsland`、模組代號 `Atmos714`）的 patch 請用
 `tools/convert_patches.py` 轉換，見下方「從舊版升級」。
 
 | 輸出 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |

@@ -1,6 +1,6 @@
 # The Island — a spatial panner for multi-channel mixing
 
-A VCV Rack 2 plugin by **[Silence Touch](https://silencetouch.com)**.
+Part of the **Silence Touch** plugin for VCV Rack 2 (plugin slug `SilenceTouch`), by **[Silence Touch](https://silencetouch.com)**.
 
 The Island places up to 12 stereo sources inside a 3D room and renders them to a multi-channel speaker layout
 (**4.0 / 5.1 / 7.1 / 7.1.4**), with outputs in standard **SMPTE channel order**. It was built for live
