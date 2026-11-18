@@ -25,7 +25,7 @@ def hexc(c):
 def write_svg(theme):
     c = theme["c"]
     svg = f'''<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="{W/15*5.08:g}mm" height="128.5mm" viewBox="0 0 {W:g} {H:g}">
+<svg xmlns="http://www.w3.org/2000/svg" width="{W/15*5.08:g}mm" height="128.693mm" viewBox="0 0 {W:g} {H:g}">
   <rect x="0" y="0" width="{W:g}" height="{H:g}" fill="{hexc(c["BG"])}"/>
   <rect x="2" y="2" width="{W-4:g}" height="{H-8:g}" fill="{hexc(c["BG"])}" stroke="{hexc(c["BORDER"])}" stroke-width="1.5"/>
   <!-- 品牌綠色帶 -->

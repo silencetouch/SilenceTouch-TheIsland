@@ -2,6 +2,8 @@
 
 English: [README.md](README.md)
 
+**贊助：** 如果 The Island 對你有幫助，歡迎[透過 PayPal 請我喝杯咖啡](https://www.paypal.com/ncp/payment/F6ENFTYRVXBT6)。
+
 深觸 Silence Touch 出品。12 軌立體聲輸入，在一個 3D 立方體裡擺放聲源，輸出最多 12 聲道（4.0／5.1／7.1／7.1.4），
 **聲道順序為 SMPTE 標準**，可直接接到多聲道音訊介面或播放系統的通道 1–12。
 
@@ -101,8 +103,7 @@ English: [README.md](README.md)
 - 電平燈：品牌綠 = 有訊號、赭黃 = 偏熱、朱紅 = 爆音；Mute 朱紅、Solo 赭黃；M/S 是直角方塊按鈕。
 - 字體：**Jost**（包浩斯／Futura 風格的幾何無襯線字），放在 `res/fonts/`，授權為 SIL Open Font License（`res/fonts/Jost-OFL.txt`），可隨外掛散布。
 - 三個主題的色票都在 `src/Theme.hpp`，12 軌顏色在 `src/CubeView.hpp`，模組與面板工具共用。
-- LOGO：`res/logo.png`（深色字）與 `res/logo_white.png`（白字，Dark 主題用），都是透明背景，置中放在右上「THE ISLAND」標題下方。要換 LOGO 直接覆蓋這個檔再重新編譯；
-  也可以改放 `res/logo.svg`（有 SVG 時優先使用，文字要先轉成外框，因為 Rack 不支援 SVG 文字）。
+- LOGO：`res/logo.svg`（深色字）與 `res/logo_white.svg`（淺色字，Dark 主題用），向量檔，置中放在右上「THE ISLAND」標題下方。要換 LOGO 就覆蓋這兩個檔再重新編譯（文字要先轉成外框，因為 Rack 不支援 SVG 文字）。
 - 模組在 Rack 裡顯示的名稱是 **The Island**，模組代號是 `TheIsland`（上架後不能再改）。原始碼裡的類別名稱仍叫 `Atmos714`，只是程式內部的名字，不影響使用。
 
 ## 座標系

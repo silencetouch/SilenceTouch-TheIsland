@@ -874,69 +874,41 @@ struct TestChButton : app::ParamWidget {
 // 深觸 LOGO：讀取 res/logo.png（白字透明背景），也支援 res/logo.svg（字要先轉外框）。
 // 等比例縮放、置中放進預留的方框；找不到檔案時什麼都不畫。
 struct LogoWidget : Widget {
-	// [0] = 深色字（淺色面板用），[1] = 白字（深色面板用）
-	// 讀取 res/logo.png / res/logo_white.png；也支援同名 .svg（字要先轉外框），有 SVG 時優先使用
+	// 深觸 Silence Touch 字標。[0] = 深色字（淺色面板用，res/logo.svg），[1] = 淺色字（Dark 主題用，res/logo_white.svg）
 	//
-	// 注意（當機修正）：這個元件「不可以」把 window::Image（PNG 圖片）存成成員。
-	// Rack 關閉時是先刪除視窗（連同 NanoVG 繪圖環境），之後才刪除模組畫面；
-	// 如果元件還握著圖片，圖片會在繪圖環境已經不存在時才被釋放（nvgDeleteImage），
-	// 造成「每次關閉 Rack 都未預期結束」。所以 PNG 每次繪製時才向 Rack 的圖片快取取用，用完就放手。
-	// SVG（window::Svg）只是向量資料、不佔繪圖環境的資源，可以保留。
+	// LOGO 用向量檔（SVG）而不是 PNG 圖片：
+	//   - SVG 只是路徑資料，在任何繪圖環境都畫得出來（主畫面、模組瀏覽器的預覽圖、Library 網站的截圖都一樣）。
+	//     PNG 圖片只屬於主視窗的繪圖環境，在其他地方畫不出來，所以先前的版本在某些情況下 LOGO 會消失。
+	//   - SVG 不佔繪圖環境的資源，Rack 關閉時也不會有釋放順序的問題（先前 PNG 造成過關閉時當機）。
 	std::shared_ptr<window::Svg> svg[2];
-	std::string pngPath[2];
 	bool loaded = false;
 	Atmos714* module = nullptr;
-
-	void loadOne(int i, const std::string& base) {
-		std::string sp = asset::plugin(pluginInstance, base + ".svg");
-		std::string pp = asset::plugin(pluginInstance, base + ".png");
-		if (system::isFile(sp))
-			svg[i] = window::Svg::load(sp);
-		else if (system::isFile(pp))
-			pngPath[i] = pp;
-	}
 
 	void draw(const DrawArgs& args) override {
 		if (!loaded) {
 			loaded = true;
-			loadOne(0, "res/logo");
-			loadOne(1, "res/logo_white");
+			static const char* const files[2] = {"res/logo.svg", "res/logo_white.svg"};
+			for (int i = 0; i < 2; i++) {
+				std::string path = asset::plugin(pluginInstance, files[i]);
+				if (system::isFile(path))
+					svg[i] = window::Svg::load(path);
+			}
 		}
 		int i = palOf(module).logoWhite ? 1 : 0;
-		if (!svg[i] && pngPath[i].empty())
+		if (!svg[i])
 			i = 1 - i;   // 只有其中一種時就用那一種
+		if (!svg[i] || !svg[i]->handle)
+			return;
+		float sw = svg[i]->handle->width, sh = svg[i]->handle->height;
+		if (sw <= 0.f || sh <= 0.f)
+			return;
 		float bw = box.size.x, bh = box.size.y;
-		if (svg[i] && svg[i]->handle) {
-			float sw = svg[i]->handle->width, sh = svg[i]->handle->height;
-			if (sw <= 0.f || sh <= 0.f)
-				return;
-			float sc = std::min(bw / sw, bh / sh);
-			nvgSave(args.vg);
-			nvgTranslate(args.vg, (bw - sw * sc) / 2.f, (bh - sh * sc) / 2.f);
-			nvgScale(args.vg, sc, sc);
-			window::svgDraw(args.vg, svg[i]->handle);
-			nvgRestore(args.vg);
-			return;
-		}
-		if (pngPath[i].empty() || !APP->window)
-			return;
-		// PNG 圖片屬於主視窗的繪圖環境；在模組瀏覽器的預覽圖（另一個繪圖環境）裡不畫，避免用錯圖片
-		if (args.vg != APP->window->vg)
-			return;
-		std::shared_ptr<window::Image> image = APP->window->loadImage(pngPath[i]);   // Rack 會快取，這裡只暫時借用
-		if (!image || image->handle < 0)
-			return;
-		int iw = 0, ih = 0;
-		nvgImageSize(args.vg, image->handle, &iw, &ih);
-		if (iw <= 0 || ih <= 0)
-			return;
-		float sc = std::min(bw / iw, bh / ih);
-		float dw = iw * sc, dh = ih * sc;
-		float x = (bw - dw) / 2.f, y = (bh - dh) / 2.f;
-		nvgBeginPath(args.vg);
-		nvgRect(args.vg, x, y, dw, dh);
-		nvgFillPaint(args.vg, nvgImagePattern(args.vg, x, y, dw, dh, 0.f, image->handle, 1.f));
-		nvgFill(args.vg);
+		float sc = std::min(bw / sw, bh / sh);
+		nvgSave(args.vg);
+		nvgTranslate(args.vg, (bw - sw * sc) / 2.f, (bh - sh * sc) / 2.f);
+		nvgScale(args.vg, sc, sc);
+		window::svgDraw(args.vg, svg[i]->handle);
+		nvgRestore(args.vg);
 	}
 };
 

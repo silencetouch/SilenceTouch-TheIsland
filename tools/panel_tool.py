@@ -64,11 +64,11 @@ def write_svg():
         if t % 2 == 0:
             rows.append(f'  <rect x="2.75" y="{y:g}" width="{RR-3.5:g}" height="{P["row_dy"]:g}" fill="{hx("ROW_STRIPE")}"/>')
     # 群組分隔線：數字|L R|LVL|X 群組|Y 群組|Z 群組|WIDTH LFE|繞場（ORB SP DIA SPD LFO）|M S
-    seps = [26.0, 77.5, 103.5, 153.5, 203.5, 253.5, 303.0, 419.5]
+    seps = [27.5, 79.5, 105.5, 155.5, 205.5, 255.5, 305.0, 421.5]
     poly = [it for it in items if it["kind"] == K_OUTPUT and it["role"] == 17][0]
     OB = P["outblock"]
     svg = f'''<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="{W/15*5.08:g}mm" height="128.5mm" viewBox="0 0 {W:g} {H:g}">
+<svg xmlns="http://www.w3.org/2000/svg" width="{W/15*5.08:g}mm" height="128.693mm" viewBox="0 0 {W:g} {H:g}">
   <rect x="0" y="0" width="{W:g}" height="{H:g}" fill="{hx("BG")}"/>
   <!-- 左側軌道區 -->
   <rect x="2" y="2" width="{RR-2:g}" height="{H-8:g}" fill="{hx("BG")}" stroke="{hx("BORDER")}" stroke-width="1.5"/>
@@ -390,10 +390,11 @@ def render_panel(outname):
             d.rectangle([x - it["w"] / 2 * S, y - it["h"] / 2 * S, x + it["w"] / 2 * S, y + it["h"] / 2 * S], fill=TH["DISPLAY_BG"], outline=tuple(int(TH["BORDER"][i] * 0.31 + TH["BG"][i] * 0.69) for i in range(3)), width=2)
             d.text((x, y), "---", fill=TH["TEXT_DIM"], font=font(11), anchor="mm")
         elif k == K_LOGO:
-            lp = os.path.join(ROOT, "res", "logo_white.png" if THEME["logoWhite"] else "logo.png")
+            lp = os.path.join(ROOT, "res", "logo_white.svg" if THEME["logoWhite"] else "logo.svg")
             bx, by, bw, bh = (it["x"] - it["w"] / 2) * S, (it["y"] - it["h"] / 2) * S, it["w"] * S, it["h"] * S
             if os.path.exists(lp):
-                lg = Image.open(lp).convert("RGBA")
+                import cairosvg as _cairosvg, io as _io
+                lg = Image.open(_io.BytesIO(_cairosvg.svg2png(url=lp, output_width=int(bw * 2)))).convert("RGBA")
                 sc = min(bw / lg.width, bh / lg.height)
                 lg = lg.resize((max(1, int(lg.width * sc)), max(1, int(lg.height * sc))), Image.LANCZOS)
                 base = img.convert("RGBA")

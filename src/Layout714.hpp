@@ -15,16 +15,17 @@ constexpr float ROW0_Y = 48.f;       // 第 1 軌的中心 y
 constexpr float ROW_DY = 27.f;       // 每軌的列距
 
 // 軌道列的各欄中心 x
-constexpr float COL_NUM = 10.f, COL_LED = 21.f;                       // 軌道編號與該軌的電平 LED
-constexpr float COL_AUDIO = 38.f, COL_AUDIOR = 64.f;                  // 每軌 L / R 兩個音訊輸入並排
-constexpr float COL_LVL = 91.f;                                       // 音量：緊貼在 L / R 輸入右邊
-constexpr float COL_PX = 116.f, COL_XCV = 141.f;
-constexpr float COL_PY = 166.f, COL_YCV = 191.f;
-constexpr float COL_PZ = 216.f, COL_ZCV = 241.f;
-constexpr float COL_WIDTH = 266.f, COL_LFE = 291.f;
-constexpr float COL_ORBBTN = 313.f, COL_SPLIT = 332.f;                                         // 繞場按鈕、SPLIT（L / R 分開繞）
-constexpr float COL_ORBDIA = 353.f, COL_ORBSPD = 378.f, COL_ORBCV = 404.f;                     // 繞場：直徑、速度、LFO 輸入
-constexpr float COL_MUTE = 431.f, COL_SOLO = 450.f;                                              // 靜音、獨奏小按鈕
+// 第一欄（編號圓片 + LED）放在外框與第一條分隔線（x = 27.5）之間的正中央：圓片 4.5～17.5、LED 19.5～24.5
+constexpr float COL_NUM = 11.f, COL_LED = 22.f;                       // 軌道編號與該軌的電平 LED
+constexpr float COL_AUDIO = 40.f, COL_AUDIOR = 66.f;                  // 每軌 L / R 兩個音訊輸入並排
+constexpr float COL_LVL = 93.f;                                       // 音量：緊貼在 L / R 輸入右邊
+constexpr float COL_PX = 118.f, COL_XCV = 143.f;
+constexpr float COL_PY = 168.f, COL_YCV = 193.f;
+constexpr float COL_PZ = 218.f, COL_ZCV = 243.f;
+constexpr float COL_WIDTH = 268.f, COL_LFE = 293.f;
+constexpr float COL_ORBBTN = 315.f, COL_SPLIT = 334.f;                                         // 繞場按鈕、SPLIT（L / R 分開繞）
+constexpr float COL_ORBDIA = 355.f, COL_ORBSPD = 380.f, COL_ORBCV = 406.f;                     // 繞場：直徑、速度、LFO 輸入
+constexpr float COL_MUTE = 433.f, COL_SOLO = 452.f;                                              // 靜音、獨奏小按鈕
 constexpr float ROWS_RIGHT = 470.f;  // 軌道區右緣
 
 // 右側立方體顯示區（中心與大小）

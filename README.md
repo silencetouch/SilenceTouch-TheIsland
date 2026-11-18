@@ -8,6 +8,8 @@ immersive performance from VCV Rack and works with any multi-channel audio inter
 
 繁體中文說明：[README.zh-TW.md](README.zh-TW.md) · 面板功能一覽：[面板功能一覽.md](面板功能一覽.md)
 
+**Support this project:** if The Island is useful to you, you can [buy me a coffee via PayPal](https://www.paypal.com/ncp/payment/F6ENFTYRVXBT6). Thank you!
+
 ## Modules
 
 ### The Island (50 HP)
